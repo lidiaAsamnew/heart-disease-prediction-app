@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Heart Disease Prediction</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>❤️ Heart Disease Prediction</h1>
+    <p class="subtitle">ML-based heart disease classification</p>
+  </header>
+
+  <main>
+    <form id="predictionForm" class="form-grid">
+      <div class="form-group">
+        <label for="age">Age (years)</label>
+        <input type="number" id="age" placeholder="e.g., 63" min="1" max="120" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="sex">Sex</label>
+        <input type="number" id="sex" placeholder="0=Female, 1=Male" min="0" max="1" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="cp">Chest Pain Type</label>
+        <input type="number" id="cp" placeholder="0-3" min="0" max="3" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="trestbps">Resting BP (mm Hg)</label>
+        <input type="number" id="trestbps" placeholder="e.g., 145" min="80" max="250" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="chol">Cholesterol (mg/dl)</label>
+        <input type="number" id="chol" placeholder="e.g., 233" min="100" max="600" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="fbs">Fasting Blood Sugar</label>
+        <input type="number" id="fbs" placeholder="0=No, 1=Yes (>120)" min="0" max="1" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="restecg">Resting ECG</label>
+        <input type="number" id="restecg" placeholder="0-2" min="0" max="2" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="thalach">Max Heart Rate</label>
+        <input type="number" id="thalach" placeholder="e.g., 150" min="60" max="220" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="exang">Exercise Angina</label>
+        <input type="number" id="exang" placeholder="0=No, 1=Yes" min="0" max="1" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="oldpeak">ST Depression</label>
+        <input type="number" id="oldpeak" placeholder="e.g., 2.3" step="0.1" min="0" max="10" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="slope">Slope</label>
+        <input type="number" id="slope" placeholder="0-2" min="0" max="2" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="ca">Major Vessels</label>
+        <input type="number" id="ca" placeholder="0-4" min="0" max="4" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="thal">Thalassemia</label>
+        <input type="number" id="thal" placeholder="0-3" min="0" max="3" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        <span class="btn-text">Predict Heart Disease</span>
+        <span class="btn-loader" style="display:none;">⏳</span>
+      </button>
+    </form>
+
+    <div id="resultsSection" style="display:none;">
+      <h2>Results</h2>
+      <div id="results"></div>
+    </div>
+
+    <div id="errorMessage" class="error-message" style="display:none;"></div>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
