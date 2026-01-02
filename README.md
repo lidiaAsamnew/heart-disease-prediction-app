@@ -16,6 +16,7 @@ A full-stack web application for heart disease prediction using trained machine 
 ## 🎯 Overview
 
 This application provides an intuitive web interface for predicting heart disease risk using two machine learning models:
+
 - **Logistic Regression**: Linear classification model
 - **Decision Tree**: Tree-based classification model
 
@@ -60,11 +61,13 @@ heart-disease-prediction-app/
 ### Backend Setup
 
 1. Navigate to the backend directory:
+
 ```bash
 cd backend
 ```
 
 2. Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -84,12 +87,14 @@ The frontend is served by the FastAPI backend, so no separate setup is required.
 ### Running Locally
 
 1. Start the FastAPI server:
+
 ```bash
 cd backend
 uvicorn app:app --reload --host 0.0.0.0 --port 8000
 ```
 
 2. Open your browser and navigate to:
+
 ```
 http://localhost:8000
 ```
@@ -117,12 +122,15 @@ http://localhost:8000
 ### Endpoints
 
 #### GET `/`
+
 Returns the main HTML page or API information.
 
 #### GET `/health`
+
 Health check endpoint.
 
 **Response:**
+
 ```json
 {
   "status": "healthy",
@@ -131,9 +139,11 @@ Health check endpoint.
 ```
 
 #### POST `/predict`
+
 Predicts heart disease using both models.
 
 **Request Body:**
+
 ```json
 {
   "age": 63,
@@ -153,6 +163,7 @@ Predicts heart disease using both models.
 ```
 
 **Response:**
+
 ```json
 {
   "logistic_regression": {
@@ -171,6 +182,7 @@ Predicts heart disease using both models.
 ### Interactive API Documentation
 
 FastAPI provides automatic interactive documentation:
+
 - Swagger UI: `http://localhost:8000/docs`
 - ReDoc: `http://localhost:8000/redoc`
 
@@ -179,6 +191,7 @@ FastAPI provides automatic interactive documentation:
 ### Option 1: Railway (Recommended for Backend)
 
 1. Create a `Procfile` in the backend directory:
+
 ```
 web: uvicorn app:app --host 0.0.0.0 --port $PORT
 ```
@@ -197,11 +210,13 @@ web: uvicorn app:app --host 0.0.0.0 --port $PORT
 ### Option 3: Vercel (For Frontend + Backend)
 
 1. Install Vercel CLI:
+
 ```bash
 npm i -g vercel
 ```
 
 2. Create `vercel.json` in the root:
+
 ```json
 {
   "version": 2,
@@ -229,6 +244,7 @@ npm i -g vercel
 ```
 
 3. Deploy:
+
 ```bash
 vercel
 ```
@@ -236,12 +252,14 @@ vercel
 ### Environment Variables
 
 For production, consider setting:
+
 - `ALLOWED_ORIGINS`: Comma-separated list of allowed CORS origins
 - `PORT`: Server port (default: 8000)
 
 ## 🛠️ Technologies Used
 
 ### Backend
+
 - **FastAPI**: Modern, fast web framework
 - **Uvicorn**: ASGI server
 - **Pydantic**: Data validation
@@ -250,6 +268,7 @@ For production, consider setting:
 - **Pandas**: Data manipulation
 
 ### Frontend
+
 - **HTML5**: Structure
 - **CSS3**: Styling with modern features
 - **JavaScript (ES6+)**: Client-side logic
@@ -276,5 +295,5 @@ Created as part of a machine learning assignment.
 
 ---
 
-**Live Demo**: [Deployment URL will be added after deployment]
-
+**Live Demo**: https://heart-disease-prediction-81qt4sr40-lidiaasamnews-projects.vercel.app/
+             : https://heart-disease-prediction-app-lfsn.onrender.com/
