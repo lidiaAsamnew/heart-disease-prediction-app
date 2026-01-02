@@ -1,299 +1,230 @@
-# Heart Disease Prediction Web Application
+# Heart Disease Prediction 
 
-A full-stack web application for heart disease prediction using trained machine learning models. The application features a FastAPI backend and a modern, responsive frontend.
+A full-stack web application for heart disease classification using Logistic Regression and Decision Tree models. The application features a FastAPI backend and a modern, responsive frontend.
 
-## 📋 Table of Contents
+## 🎯 Project Overview
 
-- [Overview](#overview)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Documentation](#api-documentation)
-- [Deployment](#deployment)
-- [Technologies Used](#technologies-used)
+This project implements a heart disease prediction system that:
 
-## 🎯 Overview
+- Uses two trained ML models: Logistic Regression and Decision Tree
+- Provides a FastAPI backend for serving predictions
+- Includes an interactive web UI for easy patient data input and result visualization
+- Compares predictions from both models with confidence probabilities
+- Demonstrates a complete end-to-end ML deployment pipeline
 
-This application provides an intuitive web interface for predicting heart disease risk using two machine learning models:
-
-- **Logistic Regression**: Linear classification model
-- **Decision Tree**: Tree-based classification model
-
-Users can input patient data through a web form and receive predictions from both models with confidence scores.
-
-## ✨ Features
-
-- 🎨 Modern, responsive UI design
-- 🤖 Dual model predictions (Logistic Regression + Decision Tree)
-- 📊 Confidence scores for each prediction
-- ✅ Input validation
-- 🚀 FastAPI backend with automatic API documentation
-- 📱 Mobile-friendly interface
-- 🔒 CORS-enabled for cross-origin requests
-
-## 📁 Project Structure
-
+## 🏗️ Project Structure
 ```
 heart-disease-prediction-app/
 ├── backend/
-│   ├── app.py                    # FastAPI application
-│   ├── requirements.txt          # Python dependencies
-│   └── models/                   # Trained ML models
+│   ├── app.py                         # FastAPI backend application
+│   ├── requirements.txt               # Python dependencies
+│   └── models/                        # Trained ML models
 │       ├── logistic_regression_model.joblib
 │       ├── decision_tree_model.joblib
 │       ├── scaler.joblib
 │       └── feature_names.joblib
 ├── frontend/
-│   ├── index.html               # Main HTML file
-│   ├── style.css                # Styling
-│   └── script.js                # Frontend logic
+│   ├── index.html                     # Main HTML page
+│   ├── style.css                      # Styling
+│   └── script.js                      # JavaScript logic
 └── README.md
 ```
 
-## 🚀 Installation
-
-### Prerequisites
+## 📋 Prerequisites
 
 - Python 3.8 or higher
-- pip (Python package manager)
+- pip (Python package installer)
 
-### Backend Setup
+## 🚀 Installation
 
-1. Navigate to the backend directory:
-
+### Clone the Repository
 ```bash
-cd backend
+git clone https://github.com/your-username/heart-disease-prediction-app.git
+cd heart-disease-prediction-app
 ```
 
-2. Install dependencies:
-
+### Create a Virtual Environment (Recommended)
 ```bash
+python -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
+```
+
+### Install Dependencies
+```bash
+cd backend
 pip install -r requirements.txt
 ```
 
-3. Ensure model files are in the `backend/models/` directory:
-   - `logistic_regression_model.joblib`
-   - `decision_tree_model.joblib`
-   - `scaler.joblib` (optional, if used)
-   - `feature_names.joblib` (optional, if used)
+## 🎓 Usage
 
-### Frontend Setup
+### Step 1: Ensure Trained Models Are Available
 
-The frontend is served by the FastAPI backend, so no separate setup is required.
+Make sure the following files exist in `backend/models/`:
 
-## 📖 Usage
+- `logistic_regression_model.joblib`
+- `decision_tree_model.joblib`
+- `scaler.joblib`
+- `feature_names.joblib`
 
-### Running Locally
+These models are trained and exported from the ML pipeline project.
 
-1. Start the FastAPI server:
+### Step 2: Start the FastAPI Server
+
+Launch the backend server:
 
 ```bash
 cd backend
 uvicorn app:app --reload --host 0.0.0.0 --port 8000
 ```
 
-2. Open your browser and navigate to:
+The server will start at:
 
 ```
 http://localhost:8000
 ```
 
-3. Fill in the patient data form and click "Predict"
+### Step 3: Access the Web UI
 
-### Input Fields
+Open your browser and navigate to:
 
-- **Age**: Patient's age in years (1-120)
+```
+http://localhost:8000
+```
+
+You can now:
+
+- Enter patient clinical data
+- Click **Predict** to get predictions from both models
+- View and compare confidence probabilities
+
+## 📊 Features
+
+### Input Parameters
+
+The system accepts the following patient features:
+
+- **Age**: Age in years (1–120)
 - **Sex**: 0 = Female, 1 = Male
-- **Chest Pain Type**: 0-3 (various types)
-- **Resting BP**: Resting blood pressure (80-250)
-- **Cholesterol**: Serum cholesterol in mg/dl (100-600)
-- **Fasting BS**: Fasting blood sugar > 120 mg/dl (0 or 1)
-- **Rest ECG**: Resting ECG results (0-2)
-- **Max Heart Rate**: Maximum heart rate achieved (60-220)
-- **Exercise Angina**: Exercise induced angina (0 or 1)
-- **Oldpeak**: ST depression induced by exercise (0.0-10.0)
-- **Slope**: Slope of peak exercise ST segment (0-2)
-- **CA**: Number of major vessels colored by flourosopy (0-4)
-- **Thal**: Thalassemia (0-3)
+- **Chest Pain Type (cp)**: 0–3
+- **Resting Blood Pressure (trestbps)**: 80–250
+- **Cholesterol (chol)**: 100–600 mg/dl
+- **Fasting Blood Sugar (fbs)**: 0 or 1
+- **Resting ECG (restecg)**: 0–2
+- **Maximum Heart Rate (thalach)**: 60–220
+- **Exercise Angina (exang)**: 0 or 1
+- **Oldpeak**: ST depression (0.0–10.0)
+- **Slope**: Slope of peak exercise ST segment (0–2)
+- **CA**: Number of major vessels (0–4)
+- **Thal**: Thalassemia (0–3)
 
-## 📡 API Documentation
+## 📡 API Endpoints
 
-### Endpoints
+- **GET `/`** – Serves the web UI
+- **GET `/health`** – Health check endpoint
+- **POST `/predict`** – Returns predictions from both ML models
 
-#### GET `/`
+## 📘 API Documentation
 
-Returns the main HTML page or API information.
+Interactive API documentation is available at:
 
-#### GET `/health`
+- **Swagger UI**: `/docs`
+- **ReDoc**: `/redoc`
 
-Health check endpoint.
-
-**Response:**
-
-```json
-{
-  "status": "healthy",
-  "models_loaded": true
-}
+## 🧪 Example API Request
+```bash
+curl -X POST "http://localhost:8000/predict" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "age": 63,
+    "sex": 1,
+    "cp": 3,
+    "trestbps": 145,
+    "chol": 233,
+    "fbs": 1,
+    "restecg": 0,
+    "thalach": 150,
+    "exang": 0,
+    "oldpeak": 2.3,
+    "slope": 0,
+    "ca": 0,
+    "thal": 1
+  }'
 ```
 
-#### POST `/predict`
+## 🎨 Web UI Features
 
-Predicts heart disease using both models.
+- **Responsive Design** – Works on desktop, tablet, and mobile
+- **Real-time Validation** – Input validation for all fields
+- **Visual Comparison** – Side-by-side model results
+- **Probability Visualization** – Confidence score display
+- **Risk Assessment** – Combined interpretation of both models
 
-**Request Body:**
+## 🔬 Model Information
 
-```json
-{
-  "age": 63,
-  "sex": 1,
-  "cp": 3,
-  "trestbps": 145,
-  "chol": 233,
-  "fbs": 1,
-  "restecg": 0,
-  "thalach": 150,
-  "exang": 0,
-  "oldpeak": 2.3,
-  "slope": 0,
-  "ca": 0,
-  "thal": 1
-}
-```
+### Logistic Regression
 
-**Response:**
+- Linear model for binary classification
+- High interpretability
+- Works well with scaled numerical features
 
-```json
-{
-  "logistic_regression": {
-    "prediction": 1,
-    "probability": 0.8234,
-    "prediction_label": "Heart Disease: Yes"
-  },
-  "decision_tree": {
-    "prediction": 1,
-    "probability": 0.7891,
-    "prediction_label": "Heart Disease: Yes"
-  }
-}
-```
+### Decision Tree
 
-### Interactive API Documentation
-
-FastAPI provides automatic interactive documentation:
-
-- Swagger UI: `http://localhost:8000/docs`
-- ReDoc: `http://localhost:8000/redoc`
+- Non-linear classification model
+- Captures complex feature relationships
+- Easy to understand decision paths
 
 ## 🚀 Deployment
 
-### Option 1: Railway (Recommended for Backend)
+This application is deployed using:
 
-1. Create a `Procfile` in the backend directory:
+- **Backend** → Render (FastAPI API service)
+- **Frontend** → Vercel (Static web application)
 
-```
-web: uvicorn app:app --host 0.0.0.0 --port $PORT
-```
+The backend serves the prediction API, while the frontend communicates with it using HTTP requests.
 
-2. Push to GitHub and connect to Railway
-3. Set environment variables if needed
-4. Deploy!
+## 🌍 Live Demo
 
-### Option 2: Render
+**Frontend (Vercel)**
+https://heart-disease-prediction-81qt4sr40-lidiaasamnews-projects.vercel.app/
 
-1. Create a `render.yaml` file
-2. Connect your GitHub repository
-3. Configure the service
-4. Deploy!
-
-### Option 3: Vercel (For Frontend + Backend)
-
-1. Install Vercel CLI:
-
-```bash
-npm i -g vercel
-```
-
-2. Create `vercel.json` in the root:
-
-```json
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "backend/app.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/predict",
-      "dest": "backend/app.py"
-    },
-    {
-      "src": "/health",
-      "dest": "backend/app.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "backend/app.py"
-    }
-  ]
-}
-```
-
-3. Deploy:
-
-```bash
-vercel
-```
-
-### Environment Variables
-
-For production, consider setting:
-
-- `ALLOWED_ORIGINS`: Comma-separated list of allowed CORS origins
-- `PORT`: Server port (default: 8000)
+**Backend (Render)**
+https://heart-disease-prediction-app-lfsn.onrender.com/
 
 ## 🛠️ Technologies Used
 
 ### Backend
 
-- **FastAPI**: Modern, fast web framework
-- **Uvicorn**: ASGI server
-- **Pydantic**: Data validation
-- **Joblib**: Model loading
-- **Scikit-learn**: Model inference
-- **Pandas**: Data manipulation
+- FastAPI
+- Uvicorn
+- Pydantic
+- Scikit-learn
+- Joblib
+- Pandas
 
 ### Frontend
 
-- **HTML5**: Structure
-- **CSS3**: Styling with modern features
-- **JavaScript (ES6+)**: Client-side logic
-- **Fetch API**: HTTP requests
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Fetch API
 
 ## 📝 Notes
 
-- The models must be trained and exported from the ML pipeline project
-- Ensure model files are in the correct directory before running
-- For production, restrict CORS origins to your frontend domain
-- Consider adding authentication for production use
-
-## 🔗 Related Projects
-
-- [ML Pipeline](../heart-disease-ml-pipeline/): Training and model export
+- Models must be trained and exported before running the backend
+- Ensure model files exist in the correct directory
+- CORS should be restricted in production environments
+- Authentication can be added for real-world usage
 
 ## 📄 License
 
-This project is for educational purposes.
+This project is intended for educational and academic purposes only.
 
 ## 👤 Author
 
-Created as part of a machine learning assignment.
+Developed as part of a Machine Learning assignment, demonstrating full-stack ML system development.
 
----
+## 🌟 Acknowledgments
 
-**Live Demo**: https://heart-disease-prediction-81qt4sr40-lidiaasamnews-projects.vercel.app/
-             : https://heart-disease-prediction-app-lfsn.onrender.com/
+- Scikit-learn for machine learning tools
+- FastAPI for backend framework
+- Open heart disease datasets
